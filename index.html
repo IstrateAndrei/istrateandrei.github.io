@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrei Istrate's Placeholder Kingdom</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 600px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .emoji {
+            font-size: 5em;
+            animation: spin 4s linear infinite;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(1.2); }
+            50% { transform: rotate(180deg) scale(1); }
+            75% { transform: rotate(270deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .subtitle {
+            font-size: 1.5em;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .message {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+        
+        .button {
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px 0 rgba(245, 87, 108, 0.45);
+            transition: transform 0.2s;
+        }
+        
+        .button:hover {
+            transform: scale(1.1);
+        }
+        
+        .button:active {
+            transform: scale(0.95);
+        }
+        
+        .counter {
+            margin-top: 20px;
+            font-size: 1em;
+            opacity: 0.8;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚧 Under Construction 🚧</h1>
+        <div class="emoji" id="emoji">🏗️</div>
+        <div class="subtitle">Welcome to Andrei's Digital Void</div>
+        <div class="message">
+            This website is currently being built by a team of highly trained hamsters running on coffee and existential dread.
+            <br><br>
+            Expected completion: <strong>Eventually™</strong>
+        </div>
+        <button class="button" onclick="surprise()">Push the Button!</button>
+        <div class="counter">Button pushes: <span id="count">0</span></div>
+        <div class="footer">
+            © 2025 Andrei Istrate | Professional Placeholder Enthusiast
+        </div>
+    </div>
+
+    <script>
+        let count = 0;
+        const emojis = ['🏗️', '🎉', '🚀', '🦄', '🌮', '🎪', '🎨', '🎮', '🎸', '🍕', '🤖', '👾', '🎯', '🌈', '⚡'];
+        let emojiIndex = 0;
+        
+        function surprise() {
+            count++;
+            document.getElementById('count').textContent = count;
+            
+            // Change emoji
+            emojiIndex = (emojiIndex + 1) % emojis.length;
+            document.getElementById('emoji').textContent = emojis[emojiIndex];
+            
+            // Easter eggs based on click count
+            if (count === 1) {
+                alert("Wow, you actually clicked it! 😮");
+            } else if (count === 5) {
+                alert("You're really committed to this, aren't you? 🤔");
+            } else if (count === 10) {
+                alert("TEN CLICKS! You win... absolutely nothing! 🎊");
+            } else if (count === 20) {
+                alert("20 clicks?! Are you okay? Do you need help? 🆘");
+            } else if (count === 42) {
+                alert("42! The answer to life, the universe, and everything! 🌌");
+            } else if (count === 100) {
+                alert("100 CLICKS! You have too much free time! But I respect your dedication. 🏆");
+                confetti();
+            }
+        }
+        
+        function confetti() {
+            const colors = ['#f093fb', '#f5576c', '#4facfe', '#00f2fe', '#43e97b'];
+            for (let i = 0; i < 50; i++) {
+                createConfetti(colors[Math.floor(Math.random() * colors.length)]);
+            }
+        }
+        
+        function createConfetti(color) {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed';
+            confetti.style.width = '10px';
+            confetti.style.height = '10px';
+            confetti.style.backgroundColor = color;
+            confetti.style.left = Math.random() * window.innerWidth + 'px';
+            confetti.style.top = '-10px';
+            confetti.style.opacity = '1';
+            confetti.style.borderRadius = '50%';
+            document.body.appendChild(confetti);
+            
+            const fall = confetti.animate([
+                { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                { transform: `translateY(${window.innerHeight + 10}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+            ], {
+                duration: Math.random() * 2000 + 1000,
+                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+            });
+            
+            fall.onfinish = () => confetti.remove();
+        }
+    </script>
+</body>
+</html>
+
